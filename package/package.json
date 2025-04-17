@@ -15,7 +15,9 @@
     "keywords": [
         "solid js",
         "solid-js",
-        "calendar"
+        "calendar",
+        "javascript",
+        "typescript"
     ],
     "prepare": "npm run build",
     "main": "./dist/index.js",
