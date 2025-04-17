@@ -1,21 +1,28 @@
 import { Calendar, CalendarOptions } from "@fullcalendar/core";
-import { onMount, createSignal, createEffect, type Ref } from "solid-js";
+import {
+  onMount,
+  createSignal,
+  createEffect,
+  type Ref,
+  splitProps,
+} from "solid-js";
 
 const SolidCalendar = (
   props: CalendarOptions & {
     ref?: Ref<Calendar>;
   },
 ) => {
+  const [ref, slitedProps] = splitProps(props, ["ref"]);
   let divCalendar!: HTMLDivElement;
   const [calendar, setCalendar] = createSignal<Calendar>();
 
   onMount(() => {
     const calendar = new Calendar(divCalendar, {
-      ...props,
+      ...slitedProps,
     });
     calendar.render();
-    if (typeof props?.ref === "function") {
-      props?.ref?.(calendar);
+    if (typeof ref.ref === "function") {
+      ref?.ref?.(calendar);
     }
     setCalendar(calendar);
   });
